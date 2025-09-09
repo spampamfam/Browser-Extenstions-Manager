@@ -69,7 +69,8 @@ body.dark__theme {
   margin: 2rem auto;
   border-radius: 20px;
   padding: 0 2rem;
-  box-shadow: 1px 1px 1px grey;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .header {
@@ -105,12 +106,12 @@ body.dark__theme {
 
 .button__label {
   min-width: 70px;
-  height: 25px;
+  height: 30px;
   background-color: var(--white);
   border-radius: 9999px;
   text-align: center;
   cursor: pointer;
-  padding: 1px;
+  padding: 4px;
   transition: background-color 150ms ease;
 }
 
@@ -145,7 +146,6 @@ body.dark__theme {
 .extenstion__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-  grid-template-rows: auto;
   gap: 2rem;
   width: 84%;
   margin: 4rem auto;
@@ -153,17 +153,61 @@ body.dark__theme {
 
 .card__container {
   width: 350px;
-  height: 40vh;
+  height: auto;
   background-color: white;
   padding: 1rem;
+  border-radius: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .card__header {
   display: grid;
   grid-template-columns: 80px auto;
-  grid-template-rows: 40px auto;
+  grid-template-rows: 40px auto 60px;
 }
 
 .card__header p {
   grid-column: 2/3;
-  width: auto;
+  font-size: 1rem;
+}
+
+.card__footer {
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.toggle__button__label {
+  width: 40px;
+  height: 25px;
+  border-radius: 9999px;
+  background-color: grey;
+  position: relative;
+}
+
+.toggle__button__label:has(.action__button:checked) {
+  background-color: var(--red-700);
+}
+
+.toggle__button__label::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  margin: 3px;
+  right: 15px;
+  transition: all 300ms ease;
+}
+
+.toggle__button__label:has(.action__button:checked)::after {
+  right: 2px;
+}
+
+.remove__button {
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  height: 30px;
 }
