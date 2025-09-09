@@ -1,12 +1,12 @@
 :root {
-  --neutral-900: hsl(227, 75%, 14%);
-  --neutral-800: hsl(226, 25%, 17%);
-  --neutral-700: hsl(225, 23%, 24%);
-  --neutral-600: hsl(226, 11%, 37%);
-  --neutral-300: hsl(0, 0%, 78%);
-  --neutral-200: hsl(217, 61%, 90%);
-  --neutral-100: hsl(0, 0%, 93%);
-  --neutral-0: hsl(200, 60%, 99%);
+  --navy-dark: hsl(227, 75%, 14%); /* very dark navy */
+  --navy: hsl(226, 25%, 17%); /* deep navy */
+  --navy-muted: hsl(225, 23%, 24%); /* muted navy */
+  --slate: hsl(226, 11%, 37%); /* slate gray */
+  --gray-light: hsl(0, 0%, 78%); /* light gray */
+  --blue-tint: hsl(217, 61%, 90%); /* pale blue */
+  --gray-soft: hsl(0, 0%, 93%); /* soft gray */
+  --white: hsl(200, 60%, 99%); /* almost white */
 
   --red-400: hsl(3, 86%, 64%);
   --red-500: hsl(3, 71%, 56%);
@@ -38,6 +38,10 @@ body.light__theme {
   font-optical-sizing: auto;
   font-style: normal;
   background: var(--light-gradient);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh; /*for now*/
+  color: black;
 }
 
 body.dark__theme {
@@ -45,6 +49,10 @@ body.dark__theme {
   font-optical-sizing: auto;
   font-style: normal;
   background: var(--dark-gradient);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh; /*for now*/
+  color: var(--white);
 }
 
 .flex__container {
@@ -57,7 +65,7 @@ body.dark__theme {
 .nav {
   width: 85%;
   height: 10vh;
-  background-color: white;
+  background-color: var(--white);
   margin: 2rem auto;
   border-radius: 20px;
   padding: 0 2rem;
@@ -82,23 +90,44 @@ body.dark__theme {
 }
 
 .filter__container {
-  justify-content: space-around;
   width: 25%;
+  display: grid;
+  grid-template-columns: 0.1fr 0.5fr 0.5fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
 }
 
 .action__button {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.button__label {
   min-width: 70px;
   height: 25px;
-  background-color: white;
-  border-radius: 9999999999px;
+  background-color: var(--white);
+  border-radius: 9999px;
   text-align: center;
   cursor: pointer;
+  padding: 1px;
+  transition: background-color 150ms ease;
+}
+
+.button__label:hover {
+  background-color: var(--red-700);
+  color: var(--white);
+}
+
+.button__label:has(.action__button:checked) {
+  background-color: var(--red-700);
+  color: var(--white);
 }
 
 .extensions__container {
   width: 35%;
   height: 25vh;
-  background-color: white;
+  background-color: var(--white);
   padding: 1rem;
 }
 

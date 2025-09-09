@@ -23,15 +23,61 @@
   <body class="light__theme" id="body">
     <header class="flex__container nav">
       <img src="/assets/images/logo.svg" class="logo" alt="Logo" />
-      <button class="theme__button" id="themeButton">yooh</button>
+      <button class="theme__button" id="themeButton">
+        <img
+          src="./assets/images/icon-moon.svg"
+          alt="theme icon"
+          id="themeIcon"
+          class="theme__icon"
+        />
+      </button>
     </header>
     <main>
       <div class="flex__container header">
         <h1>Extenstion List</h1>
-        <div class="filter__container flex__container">
-          <button class="action__button" id="allFilter">All</button>
-          <button class="action__button" id="activeFilter">Active</button>
-          <button class="action__button" id="inActiveFilter">Inactive</button>
+        <div class="filter__container">
+          <label for="allFilter" class="button__label">
+            <input
+              type="radio"
+              name="filter"
+              class="action__button"
+              id="allFilter"
+              checked="checked"
+            /><span>All</span>
+          </label>
+
+          <label for="activeFilter" class="button__label">
+            <input
+              type="radio"
+              name="filter"
+              class="action__button"
+              id="activeFilter"
+            />
+            <span>Active</span>
+          </label>
+
+          <label for="inActiveFilter" class="button__label">
+            <input
+              type="radio"
+              name="filter"
+              class="action__button"
+              id="inActiveFilter"
+            />
+            <span>Inactive</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="extenstion__container">
+        <div class="card__container">
+          <header class="card__header">
+            <img src="./assets/images/logo-devlens.svg" class="card__logo" />
+            <h2>Devlens</h2>
+            <p>
+              Quickly inspect page layouts and visualize element boundaries.
+            </p>
+          </header>
+          <footer class="card__footer flex__container"></footer>
         </div>
       </div>
     </main>
