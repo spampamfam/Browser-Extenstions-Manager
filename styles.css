@@ -3,6 +3,7 @@
   --navy: hsl(226, 25%, 17%); /* deep navy */
   --navy-muted: hsl(225, 23%, 24%); /* muted navy */
   --slate: hsl(226, 11%, 37%); /* slate gray */
+
   --gray-light: hsl(0, 0%, 78%); /* light gray */
   --blue-tint: hsl(217, 61%, 90%); /* pale blue */
   --gray-soft: hsl(0, 0%, 93%); /* soft gray */
@@ -29,7 +30,7 @@
   font-weight: <weight>;
   font-style: normal;
   font-variation-settings:
-    "wdth" 100;
+    "width" 100;
 }
 */
 
@@ -41,7 +42,7 @@ body.light__theme {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh; /*for now*/
-  color: black;
+  color: var(--navy-dark);
 }
 
 body.dark__theme {
@@ -64,13 +65,21 @@ body.dark__theme {
 
 .nav {
   width: 85%;
-  height: 10vh;
+  height: 13vh;
   background-color: var(--white);
   margin: 2rem auto;
   border-radius: 20px;
   padding: 0 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.dark__theme .nav {
+  background-color: var(--navy);
+}
+
+body.dark__theme .logo__text {
+  fill: white;
 }
 
 .header {
@@ -80,20 +89,36 @@ body.dark__theme {
 }
 
 .theme__button {
-  width: 40px;
-  height: auto;
-  background-color: var(--neutral-300);
-  border-radius: 6px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--gray-soft);
+  border-radius: 10px;
+  margin: 3px;
   padding: 8px;
   cursor: pointer;
   outline: none;
   border: none;
+  transition: outline 150ms ease-in-out;
+}
+
+body.dark__theme .theme__button {
+  background-color: var(--slate);
+}
+
+.theme__button:hover {
+  outline: 2px solid var(--red-400);
+  outline-offset: 2px;
+}
+
+.theme__icon {
+  width: 20px;
+  height: auto;
 }
 
 .filter__container {
   width: 25%;
   display: grid;
-  grid-template-columns: 0.1fr 0.5fr 0.5fr;
+  grid-template-columns: 60px 80px 100px;
   grid-template-rows: 1fr;
   gap: 10px;
 }
@@ -105,24 +130,40 @@ body.dark__theme {
 }
 
 .button__label {
-  min-width: 70px;
-  height: 30px;
+  height: 40px;
   background-color: var(--white);
   border-radius: 9999px;
   text-align: center;
   cursor: pointer;
-  padding: 4px;
+  padding: 9px;
   transition: background-color 150ms ease;
+}
+
+body.dark__theme .button__label {
+  background-color: var(--navy-muted);
+}
+
+body.dark__theme .button__label:hover {
+  background-color: var(--slate);
+}
+
+body.dark__theme .button__label:has(.action__button:checked) {
+  background-color: var(--red-400);
+  color: var(--navy-dark);
 }
 
 .button__label:hover {
   background-color: var(--red-700);
   color: var(--white);
+  outline: 2px solid var(--red-400);
+  outline-offset: 2px;
 }
 
 .button__label:has(.action__button:checked) {
   background-color: var(--red-700);
   color: var(--white);
+  outline: 2px solid var(--red-400);
+  outline-offset: 2px;
 }
 
 .extensions__container {
@@ -154,17 +195,31 @@ body.dark__theme {
 .card__container {
   width: 350px;
   height: auto;
-  background-color: white;
+  background-color: var(--white);
   padding: 1rem;
   border-radius: 24px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+body.dark__theme .card__container {
+  background-color: var(--navy);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--slate);
+}
+
 .card__header {
   display: grid;
   grid-template-columns: 80px auto;
   grid-template-rows: 40px auto 60px;
+}
+
+body.dark__theme h2 {
+  color: var(--white);
+}
+
+body.dark__theme .card__header p {
+  color: var(--gray-light);
 }
 
 .card__header p {
@@ -178,15 +233,16 @@ body.dark__theme {
 }
 
 .toggle__button__label {
-  width: 40px;
+  width: 45px;
   height: 25px;
   border-radius: 9999px;
   background-color: grey;
   position: relative;
+  transition: background-color 250ms ease;
 }
 
 .toggle__button__label:has(.action__button:checked) {
-  background-color: var(--red-700);
+  background-color: var(--red-400);
 }
 
 .toggle__button__label::after {
@@ -194,11 +250,11 @@ body.dark__theme {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--white);
   position: absolute;
   margin: 3px;
-  right: 15px;
-  transition: all 300ms ease;
+  right: 20px;
+  transition: all 250ms ease;
 }
 
 .toggle__button__label:has(.action__button:checked)::after {
@@ -208,6 +264,12 @@ body.dark__theme {
 .remove__button {
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  height: 35px;
+  width: 80px;
+}
 
-  height: 30px;
+body.dark__theme .remove__button {
+  color: var(--white);
+  background-color: var(--navy);
+  border: 1px solid var(--slate);
 }
