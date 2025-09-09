@@ -21,3 +21,94 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/*
+.noto-sans-<uniquifier> {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+*/
+
+body.light__theme {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background: var(--light-gradient);
+}
+
+body.dark__theme {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background: var(--dark-gradient);
+}
+
+.flex__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.nav {
+  width: 85%;
+  height: 10vh;
+  background-color: white;
+  margin: 2rem auto;
+  border-radius: 20px;
+  padding: 0 2rem;
+  box-shadow: 1px 1px 1px grey;
+}
+
+.header {
+  width: 85%;
+  height: 10vh;
+  margin: 2rem auto;
+}
+
+.theme__button {
+  width: 40px;
+  height: auto;
+  background-color: var(--neutral-300);
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.filter__container {
+  justify-content: space-around;
+  width: 25%;
+}
+
+.action__button {
+  min-width: 70px;
+  height: 25px;
+  background-color: white;
+  border-radius: 9999999999px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.extensions__container {
+  width: 35%;
+  height: 25vh;
+  background-color: white;
+  padding: 1rem;
+}
+
+.extenstion__logo {
+  margin-right: 10px;
+}
+
+.extenstion__card__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}

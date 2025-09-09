@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Browser Extensions Manager UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <link
       rel="icon"
       type="image/png"
@@ -11,9 +17,23 @@
       href="./assets/images/favicon-32x32.png"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Browser Extensions Manager UI</title>
   </head>
-  <body>
-    <header></header>
-    <main></main>
+  <body class="light__theme" id="body">
+    <header class="flex__container nav">
+      <img src="/assets/images/logo.svg" class="logo" alt="Logo" />
+      <button class="theme__button" id="themeButton">yooh</button>
+    </header>
+    <main>
+      <div class="flex__container header">
+        <h1>Extenstion List</h1>
+        <div class="filter__container flex__container">
+          <button class="action__button" id="allFilter">All</button>
+          <button class="action__button" id="activeFilter">Active</button>
+          <button class="action__button" id="inActiveFilter">Inactive</button>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
