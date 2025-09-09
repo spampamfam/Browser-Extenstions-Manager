@@ -5,6 +5,9 @@ const bodyContainer = document.getElementById("body");
 const themeIcon = document.getElementById("themeIcon");
 
 function applyTheme(theme) {
+  if (!theme) {
+    theme = "light";
+  }
   if (theme === "light") {
     bodyContainer.classList.toggle("light__theme", true);
     bodyContainer.classList.toggle("dark__theme", false);

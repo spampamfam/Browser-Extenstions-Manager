@@ -141,3 +141,29 @@ body.dark__theme {
   justify-content: flex-start;
   align-items: center;
 }
+
+.extenstion__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-rows: auto;
+  gap: 2rem;
+  width: 84%;
+  margin: 4rem auto;
+}
+
+.card__container {
+  width: 350px;
+  height: 40vh;
+  background-color: white;
+  padding: 1rem;
+}
+.card__header {
+  display: grid;
+  grid-template-columns: 80px auto;
+  grid-template-rows: 40px auto;
+}
+
+.card__header p {
+  grid-column: 2/3;
+  width: auto;
+}
