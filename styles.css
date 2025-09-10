@@ -173,21 +173,21 @@ body.dark__theme .button__label:has(.action__button:checked) {
   padding: 1rem;
 }
 
-.extenstion__logo {
+.extension__logo {
   margin-right: 10px;
 }
 
-.extenstion__card__header {
+.extension__card__header {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
 
-.extenstion__container {
+.extension__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-  gap: 2rem;
+  gap: 1rem;
   width: 84%;
   margin: 4rem auto;
 }
@@ -211,7 +211,7 @@ body.dark__theme .card__container {
 .card__header {
   display: grid;
   grid-template-columns: 80px auto;
-  grid-template-rows: 40px auto 60px;
+  grid-template-rows: 40px 70px 60px;
 }
 
 body.dark__theme h2 {
