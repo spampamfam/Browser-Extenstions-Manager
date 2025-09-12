@@ -1,71 +1,59 @@
-Browser Extensions Manager UI
+# Browser Extensions Manager UI
 
-This is a Vanilla JavaScript front-end project I built to practice working with JSON data, DOM manipulation, and responsive design.
-It simulates a browser extensions manager where users can toggle themes, filter extensions, and manage their states — all powered by data from a data.json file.
+This is a **Vanilla JavaScript front-end project** I built to practice working with **JSON data**, **DOM manipulation**, and **responsive design**.  
+It simulates a browser extensions manager where users can toggle themes, filter extensions, and manage their states — all powered by data from a `data.json` file.
 
-🚀 Features
+![Preview](./preview.jpg)
 
-Theme Toggle
-Switch between light 🌞 and dark 🌙 themes with a single button.
+---
 
-Extensions List
+## 🚀 Features
 
-Dynamically rendered cards for each extension.
+- Light 🌞 / Dark 🌙 theme toggle
+- Filter extensions by **All**, **Active**, or **Inactive**
+- Toggle extension states or remove them
+- Reset simulation with a confirmation dialog
+- Fully responsive (desktop, tablet, mobile)
 
-Show All, Active, or Inactive extensions.
+---
 
-Toggle extension state or remove extensions.
+## 📂 Project Structure
 
-Reset Simulation
-A reset dialog lets you restart the simulation with two options:
-
-✅ Yes (Hell Yeahhh) → Reloads simulation.
-
-❌ No (boring) → Keeps the current state.
-
-Responsive Design
-
-3-column layout on large screens.
-
-2-column layout on medium screens.
-
-1-column layout on small/mobile screens.
-
-📂 Project Structure
 .
 ├── index.html # Main UI structure
 ├── styles.css # Theme and layout styling
 ├── script.js # App logic (fetching, rendering, localStorage)
-├── data.json # Mock extension data (must exist locally)
+├── data.json # Mock extension data
 └── assets/
-└── images/ # Logos, icons (favicon, moon/sun theme icons, etc.)
+└── images/ # Logos, preview, icons
 
-🛠️ Tech Stack
+---
 
-HTML5 (semantic structure)
+## 🛠️ Tech Stack
 
-CSS3 (flexbox + grid + responsive design + themes)
+- **HTML5**
+- **CSS3**
+- **JavaScript (Vanilla)**
+- **JSON**
 
-JavaScript (ES6) (DOM manipulation, localStorage, fetch API)
+---
 
-JSON (data-driven rendering)
+## 📱 Responsiveness
 
-📱 Responsiveness
+- **Desktop** → 3 columns
+- **Tablet** → 2 columns
+- **Mobile** → 1 column
 
-Desktop → 3 columns.
+---
 
-Tablet → 2 columns.
+## 🎨 Preview
 
-Mobile → 1 column, stacked layout.
+![Preview](./assets/images/preview.jpg)
 
-🎨 Preview
+---
 
-(Add a screenshot or GIF here once you run the project for better visualization)
+## 🧩 Future Improvements
 
-🧩 Future Improvements
-
-Add animations when toggling/removing extensions.
-
-Sync with real browser extension APIs.
-
-Add search functionality to quickly find extensions.
+- Add animations when toggling/removing extensions
+- Integrate with real browser extension APIs
+- Add search functionality to quickly find extensions
