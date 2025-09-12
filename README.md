@@ -19,6 +19,8 @@ It simulates a browser extensions manager where users can toggle themes, filter 
 
 ## 📂 Project Structure
 
+---
+
 .
 ├── index.html # Main UI structure
 ├── styles.css # Theme and layout styling

@@ -251,7 +251,7 @@ h2 {
 }
 
 .toggle__button__label:has(.action__button:checked)::after {
-  transform: translateX(2px);
+  transform: translateX(19px);
 }
 
 .remove__button {
