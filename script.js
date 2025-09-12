@@ -4,21 +4,82 @@ const themeButton = document.getElementById("themeButton");
 const bodyContainer = document.getElementById("body");
 const themeIcon = document.getElementById("themeIcon");
 const extensionContainer = document.getElementById("extensionContainer");
-const checkboxes = extensionContainer.querySelectorAll(
-  "input[type='checkbox']"
-);
+const resetContainer = document.getElementById("resetContainer");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const allFilterBtn = document.getElementById("allFilter");
+const activeFilterBtn = document.getElementById("activeFilter");
+const inActiveFilterBtn = document.getElementById("inActiveFilter");
+
 let saved;
+
+function fetchData() {
+  fetch("./data.json")
+    .then((res) => {
+      if (!res.ok) {
+        console.log("problem");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      localStorage.setItem("data", JSON.stringify(data));
+
+      updateStorage(data); //going to updateStorage to update the storage
+    });
+}
 
 function updateStorage(newArr) {
   localStorage.setItem("data", JSON.stringify(newArr));
-  console.log(newArr);
   render(newArr);
 }
 
-function render(arr) {
-  extensionContainer.innerHTML = "";
-  arr.forEach((obj) => {
-    addCards(obj);
+function render(newArr) {
+  let children = extensionContainer.querySelectorAll(".card__container");
+
+  let domMap = {};
+  children.forEach((node) => {
+    const id = node.dataset.id;
+    domMap[id] = node;
+  });
+
+  Object.values(domMap).forEach((node) => {
+    if (!newArr.some((obj) => obj.name === node.dataset.id)) {
+      node.remove();
+    } else {
+    }
+  });
+  const result = newArr.filter((obj) => !domMap[obj.name]);
+  addCards(result);
+  if (newArr.length <= 0) {
+    extensionContainer.classList.toggle("hidden", true);
+    resetContainer.classList.toggle("hidden", false);
+  }
+}
+
+function addCards(extensions) {
+  extensions.forEach((extension) => {
+    extensionContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div class="card__container" data-id='${extension.name}'>
+          <header class="card__header">
+            <img src="${extension.logo}" class="card__logo" alt='${extension.nam} logo'/>
+            <h2>${extension.name}</h2>
+            <p>
+              ${extension.description}
+            </p>
+          </header>
+          <footer class="card__footer flex__container">
+            <button type="button" class="remove__button button__label" data-extension='${extension.name}'>
+              Remove
+            </button>
+            <label for="${extension.name}" class="toggle__button__label">
+              <input type="checkbox" class="action__button" id="${extension.name}" />
+            </label>
+          </footer>
+          `
+    );
+    isActive(extension);
   });
 }
 
@@ -31,52 +92,59 @@ function isActive(obj) {
   }
 }
 
-function addCards(obj) {
-  extensionContainer.insertAdjacentHTML(
-    "beforeend",
-    `
-        <div class="card__container">
-          <header class="card__header">
-            <img src="${obj.logo}" class="card__logo" alt='${obj.nam} logo'/>
-            <h2>${obj.name}</h2>
-            <p>
-              ${obj.description}
-            </p>
-          </header>
-          <footer class="card__footer flex__container">
-            <button type="button" class="remove__button button__label" data-extension='${obj.name}'>
-              Remove
-            </button>
-            <label for="${obj.name}" class="toggle__button__label">
-              <input type="checkbox" class="action__button" id="${obj.name}" />
-            </label>
-          </footer>
-          `
-  );
-  isActive(obj);
+function activeFilter() {
+  let arg = JSON.parse(localStorage.getItem("data"));
+  allFilter();
+  arg.forEach((obj) => {
+    if (!obj.isActive) {
+      const currentCard = document.querySelector(`[data-id="${obj.name}"]`);
+      currentCard.classList.toggle("hidden", true);
+    } else {
+      return;
+    }
+  });
 }
 
-function applyTheme(theme) {
-  if (!theme) {
-    theme = "light";
+function inActiveFilter() {
+  let arg = JSON.parse(localStorage.getItem("data"));
+  allFilter();
+  arg.forEach((obj) => {
+    if (obj.isActive) {
+      const currentCard = document.querySelector(`[data-id="${obj.name}"]`);
+      currentCard.classList.toggle("hidden", true);
+    } else {
+      return;
+    }
+  });
+}
+
+function allFilter() {
+  let arg = JSON.parse(localStorage.getItem("data"));
+  arg.forEach((obj) => {
+    const currentCard = document.querySelector(`[data-id="${obj.name}"]`);
+    currentCard.classList.toggle("hidden", false);
+  });
+}
+
+function themeStorageHandler() {
+  if (!localStorage.getItem("currentTheme")) {
+    localStorage.setItem("currentTheme", "light");
+    toggleTheme(localStorage.getItem("currentTheme"));
+  } else {
+    toggleTheme(localStorage.getItem("currentTheme"));
   }
-  if (theme === "light") {
+}
+
+function startupTheme(currentTheme) {
+  if (currentTheme === "light") {
     bodyContainer.classList.toggle("light__theme", true);
     bodyContainer.classList.toggle("dark__theme", false);
-  } else {
-    bodyContainer.classList.toggle("dark__theme", true);
-    bodyContainer.classList.toggle("light__theme", false);
-  }
-}
-
-function toggleTheme() {
-  let currentTheme = localStorage.getItem("currentTheme");
-  if (currentTheme === "light") {
+    themeIcon.src = "./assets/images/icon-moon.svg";
+  } else if (currentTheme === "dark") {
     bodyContainer.classList.toggle("dark__theme", true);
     bodyContainer.classList.toggle("light__theme", false);
     themeIcon.src = "./assets/images/icon-sun.svg";
-    localStorage.setItem("currentTheme", "dark");
-  } else {
+  } else if (!currentTheme) {
     bodyContainer.classList.toggle("light__theme", true);
     bodyContainer.classList.toggle("dark__theme", false);
     themeIcon.src = "./assets/images/icon-moon.svg";
@@ -84,32 +152,46 @@ function toggleTheme() {
   }
 }
 
-window.addEventListener("load", () => {
-  applyTheme(localStorage.getItem("currentTheme"));
-
-  if (!localStorage.getItem("data")) {
-    fetch("./data.json")
-      .then((res) => {
-        if (!res.ok) {
-          console.log("problem");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        localStorage.setItem("data", JSON.stringify(data));
-        data.forEach((obj) => {
-          addCards(obj);
-        });
-      });
+function toggleTheme(currentTheme) {
+  console.log("toggleTheme function");
+  if (currentTheme === "light") {
+    console.log("first if block");
+    bodyContainer.classList.toggle("dark__theme", true);
+    bodyContainer.classList.toggle("light__theme", false);
+    themeIcon.src = "./assets/images/icon-sun.svg";
+    localStorage.setItem("currentTheme", "dark");
   } else {
-    saved = JSON.parse(localStorage.getItem("data"));
-    saved.forEach((obj) => {
-      addCards(obj);
-    });
+    console.log("else block");
+    bodyContainer.classList.toggle("light__theme", true);
+    bodyContainer.classList.toggle("dark__theme", false);
+    themeIcon.src = "./assets/images/icon-moon.svg";
+    localStorage.setItem("currentTheme", "light");
+  }
+}
+
+function removeExtension(extension) {
+  let arr = JSON.parse(localStorage.getItem("data"));
+  let last = arr.filter((curr) => {
+    return curr.name != extension.name;
+  });
+  updateStorage(last);
+}
+
+window.addEventListener("load", () => {
+  startupTheme(localStorage.getItem("currentTheme"));
+  if (!localStorage.getItem("data")) {
+    fetchData();
+  } else {
+    let data = JSON.parse(localStorage.getItem("data"));
+
+    updateStorage(data); //going to updateStorage to update the storage
   }
 });
 
-themeButton.addEventListener("click", toggleTheme);
+themeButton.addEventListener("click", () => {
+  console.log(localStorage.getItem("currentTheme"));
+  toggleTheme(localStorage.getItem("currentTheme"));
+});
 
 extensionContainer.addEventListener("click", (e) => {
   let saved = JSON.parse(localStorage.getItem("data"));
@@ -120,14 +202,16 @@ extensionContainer.addEventListener("click", (e) => {
   } else if (e.target.type === "button") {
     let cardName = e.target.dataset.extension;
     let curr = saved.find((obj) => obj.name === cardName);
-    removeExtenstion(curr);
+    removeExtension(curr);
   }
 });
 
-function removeExtenstion(extension) {
-  let arr = JSON.parse(localStorage.getItem("data"));
-  let zby = arr.filter((curr) => {
-    return curr.name != extension.name;
-  });
-  updateStorage(zby);
-}
+yesBtn.addEventListener("click", () => {
+  extensionContainer.classList.toggle("hidden", false);
+  resetContainer.classList.toggle("hidden", true);
+  fetchData();
+});
+
+allFilterBtn.addEventListener("click", allFilter);
+activeFilterBtn.addEventListener("click", activeFilter);
+inActiveFilterBtn.addEventListener("click", inActiveFilter);
