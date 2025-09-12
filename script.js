@@ -10,6 +10,7 @@ const noBtn = document.getElementById("noBtn");
 const allFilterBtn = document.getElementById("allFilter");
 const activeFilterBtn = document.getElementById("activeFilter");
 const inActiveFilterBtn = document.getElementById("inActiveFilter");
+const noExtension = document.getElementById("noExtension");
 
 let saved;
 
@@ -17,7 +18,7 @@ function fetchData() {
   fetch("./data.json")
     .then((res) => {
       if (!res.ok) {
-        console.log("problem");
+        console.log("problem with fetching data");
       }
       return res.json();
     })
@@ -92,12 +93,30 @@ function isActive(obj) {
   }
 }
 
+// function isEmptyInactive(child, arr) {
+//   if (child == arr.length) {
+//     noExtension.innerText = "There's no extensions here";
+//   } else {
+//     noExtension.innerText = "";
+//   }
+// }
+
+// function isEmptyActive(child, arr) {
+//   if ((child = arr.length)) {
+//     noExtension.innerText = "";
+//   } else {
+//     noExtension.innerText = "There's no extensions here";
+//   }
+// }
+
 function activeFilter() {
   let arg = JSON.parse(localStorage.getItem("data"));
+
   allFilter();
   arg.forEach((obj) => {
     if (!obj.isActive) {
       const currentCard = document.querySelector(`[data-id="${obj.name}"]`);
+      console.log({ currentCard });
       currentCard.classList.toggle("hidden", true);
     } else {
       return;
@@ -107,6 +126,7 @@ function activeFilter() {
 
 function inActiveFilter() {
   let arg = JSON.parse(localStorage.getItem("data"));
+
   allFilter();
   arg.forEach((obj) => {
     if (obj.isActive) {
@@ -153,15 +173,12 @@ function startupTheme(currentTheme) {
 }
 
 function toggleTheme(currentTheme) {
-  console.log("toggleTheme function");
   if (currentTheme === "light") {
-    console.log("first if block");
     bodyContainer.classList.toggle("dark__theme", true);
     bodyContainer.classList.toggle("light__theme", false);
     themeIcon.src = "./assets/images/icon-sun.svg";
     localStorage.setItem("currentTheme", "dark");
   } else {
-    console.log("else block");
     bodyContainer.classList.toggle("light__theme", true);
     bodyContainer.classList.toggle("dark__theme", false);
     themeIcon.src = "./assets/images/icon-moon.svg";
@@ -189,7 +206,6 @@ window.addEventListener("load", () => {
 });
 
 themeButton.addEventListener("click", () => {
-  console.log(localStorage.getItem("currentTheme"));
   toggleTheme(localStorage.getItem("currentTheme"));
 });
 
