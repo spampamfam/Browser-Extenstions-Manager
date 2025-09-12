@@ -17,20 +17,6 @@ It simulates a browser extensions manager where users can toggle themes, filter 
 
 ---
 
-## 📂 Project Structure
-
----
-
-.
-├── index.html # Main UI structure
-├── styles.css # Theme and layout styling
-├── script.js # App logic (fetching, rendering, localStorage)
-├── data.json # Mock extension data
-└── assets/
-└── images/ # Logos, preview, icons
-
----
-
 ## 🛠️ Tech Stack
 
 - **HTML5**
@@ -45,12 +31,6 @@ It simulates a browser extensions manager where users can toggle themes, filter 
 - **Desktop** → 3 columns
 - **Tablet** → 2 columns
 - **Mobile** → 1 column
-
----
-
-## 🎨 Preview
-
-![Preview](./assets/images/preview.jpg)
 
 ---
 
