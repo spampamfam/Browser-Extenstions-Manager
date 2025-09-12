@@ -38,11 +38,6 @@ It simulates a browser extensions manager where users can toggle themes, filter 
 
 ---
 
-## 🎨 Preview
-
-![Preview](./assets/images/preview.jpg)
-
----
 
 ## 🧩 Future Improvements
 
